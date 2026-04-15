@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "vue-tailwind-variants-component": {
+      "source": "Barbapapazes/skills",
+      "sourceType": "github",
+      "computedHash": "ca66b1634d34098ab9db05651c58d3ef03cd548590285fd27c6b4a0477e96e51"
+    }
+  }
+}
