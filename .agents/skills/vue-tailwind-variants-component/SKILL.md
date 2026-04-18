@@ -1,10 +1,14 @@
 ---
+argument-hint: Describe the component to create, which wrapper to use (plain, modal, slideover, etc.), and whether the project auto-imports `tv`.
+description: Create Vue single-file components that use tailwind-variants (`tv`), including Nuxt UI-style modal/slideover/full components, `ui` slot overrides, and the correct `tv` import behavior. Use when generating Vue components, deciding whether to import `tv` from `tailwind-variants`, or following the Barbapapazes snippet structure.
+metadata:
+    github-path: skills/vue-tailwind-variants-component
+    github-ref: refs/tags/0.0.1
+    github-repo: https://github.com/barbapapazes/skills
+    github-tree-sha: b2a445a768937410c63caeb5ffb2486780318f7b
 name: vue-tailwind-variants-component
-description: 'Create Vue single-file components that use tailwind-variants (`tv`), including Nuxt UI-style modal/slideover/full components, `ui` slot overrides, and the correct `tv` import behavior. Use when generating Vue components, deciding whether to import `tv` from `tailwind-variants`, or following the Barbapapazes snippet structure.'
-argument-hint: 'Describe the component to create, which wrapper to use (plain, modal, slideover, etc.), and whether the project auto-imports `tv`.'
 user-invocable: true
 ---
-
 # Vue Tailwind Variants Component
 
 Use this skill when creating a Vue SFC that follows the Barbapapazes component snippet style:
