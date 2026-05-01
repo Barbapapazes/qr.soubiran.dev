@@ -1,3 +1,3 @@
 # qr.soubiran.dev
 
-A static QR code generator.
+Generate downloadable QR codes for any URL.

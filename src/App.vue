@@ -24,9 +24,6 @@ const props = defineProps<AppProps>()
 defineEmits<AppEmits>()
 defineSlots<AppSlots>()
 
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
-
 const { url } = useQrContent()
 const { svg, fileName } = useQrCode(url)
 const { downloadPng, isDownloading } = useQrDownload()
@@ -43,9 +40,7 @@ function captureQrCode() {
 
     <QrControls
       v-model="url"
-      :is-dark="isDark"
       :is-downloading="isDownloading"
-      @toggle-theme="toggleDark()"
       @capture="captureQrCode"
     />
   </main>
