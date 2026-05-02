@@ -1,6 +1,5 @@
 import { encode, renderSVG } from 'uqr'
 import { QR_BASE_OPTIONS, QR_OUTPUT_SIZE } from '@/app/constants'
-import { createQrFilename } from '@/app/utils/url'
 
 export function useQrCode(content: MaybeRefOrGetter<string | undefined>) {
   const contentValue = computed(() => toValue(content) ?? '')
@@ -39,10 +38,7 @@ export function useQrCode(content: MaybeRefOrGetter<string | undefined>) {
     }
   })
 
-  const fileName = computed(() => createQrFilename(contentValue.value))
-
   return {
-    fileName,
     svg,
   }
 }

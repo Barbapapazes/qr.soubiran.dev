@@ -21,11 +21,16 @@ const props = defineProps<QrPreviewProps>()
 defineEmits<QrPreviewEmits>()
 defineSlots<QrPreviewSlots>()
 
+const el = templateRef('el')
+defineExpose({
+  el,
+})
+
 const ui = computed(() => qrPreview())
 </script>
 
 <template>
-  <div :class="ui.base({ class: [props.ui?.base, props.class] })">
+  <div ref="el" :class="ui.base({ class: [props.ui?.base, props.class] })">
     <div v-html="props.svg" />
   </div>
 </template>

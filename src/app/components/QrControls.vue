@@ -10,7 +10,6 @@ const qrControls = tv({
 })
 
 export interface QrControlsProps {
-  isDownloading?: boolean
   class?: any
   ui?: Partial<typeof qrControls.slots>
 }
@@ -44,9 +43,7 @@ const ui = computed(() => qrControls())
         />
 
         <UButton
-          :disabled="props.isDownloading"
           :icon="camera"
-          :loading="props.isDownloading"
           color="neutral"
           label="Capture"
           variant="solid"

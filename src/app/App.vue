@@ -1,7 +1,6 @@
 <script lang="ts">
 import QrControls from '@/app/components/QrControls.vue'
 import QrPreview from '@/app/components/QrPreview.vue'
-import { QR_OUTPUT_SIZE } from '@/app/constants'
 
 const app = tv({
   slots: {
@@ -24,23 +23,19 @@ const props = defineProps<AppProps>()
 defineEmits<AppEmits>()
 defineSlots<AppSlots>()
 
+const preview = ref<{ el?: HTMLElement }>()
 const { url } = useQrContent()
-const { svg, fileName } = useQrCode(url)
-const { downloadPng, isDownloading } = useQrDownload()
+const { svg } = useQrCode(url)
+const { capture: captureQrCode } = useScreenshot(() => preview.value?.el)
 const ui = computed(() => app())
-
-function captureQrCode() {
-  return downloadPng(svg.value, fileName.value, QR_OUTPUT_SIZE)
-}
 </script>
 
 <template>
   <main :class="ui.base({ class: [props.ui?.base, props.class] })">
-    <QrPreview :svg="svg" />
+    <QrPreview ref="preview" :svg="svg" />
 
     <QrControls
       v-model="url"
-      :is-downloading="isDownloading"
       @capture="captureQrCode"
     />
   </main>

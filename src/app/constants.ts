@@ -1,6 +1,5 @@
 import type { QrCodeGenerateSvgOptions } from 'uqr'
 
-export const DEFAULT_QR_FILENAME = 'qr-code'
 export const QR_OUTPUT_SIZE = 500
 
 export const QR_BASE_OPTIONS = {
