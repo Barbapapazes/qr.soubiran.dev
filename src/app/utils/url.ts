@@ -1,4 +1,4 @@
-import { DEFAULT_QR_FILENAME } from '@/constants'
+import { DEFAULT_QR_FILENAME } from '@/app/constants'
 
 function toSlug(value: string) {
   return value

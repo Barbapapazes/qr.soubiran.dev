@@ -1,7 +1,7 @@
 <script lang="ts">
-import QrControls from '@/components/QrControls.vue'
-import QrPreview from '@/components/QrPreview.vue'
-import { QR_OUTPUT_SIZE } from '@/constants'
+import QrControls from '@/app/components/QrControls.vue'
+import QrPreview from '@/app/components/QrPreview.vue'
+import { QR_OUTPUT_SIZE } from '@/app/constants'
 
 const app = tv({
   slots: {

@@ -1,14 +1,7 @@
 node_modules
 dist
+auto-imports.d.ts
+components.d.ts
 .DS_Store
-src/auto-imports.d.ts
-src/components.d.ts
-code.soubiran.dev/node_modules
-code.soubiran.dev/dist
-
-# wrangler files
 .wrangler
-.dev.vars*
-!.dev.vars.example
-.env*
-!.env.example
+.env
