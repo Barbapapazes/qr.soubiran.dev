@@ -2,7 +2,7 @@
   "name": "qr.soubiran.dev",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@10.34.5",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,25 +12,25 @@
     "deploy": "pnpm run build && wrangler deploy"
   },
   "dependencies": {
-    "@nuxt/ui": "^4.7.0",
-    "@vueuse/core": "^14.2.1",
+    "@nuxt/ui": "^4.11.0",
+    "@vueuse/core": "^14.4.0",
     "modern-screenshot": "^4.7.0",
-    "tailwind-variants": "^3.2.2",
+    "tailwind-variants": "^3.3.1",
     "uqr": "^0.1.3",
-    "vue": "^3.5.33"
+    "vue": "^3.5.42"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^8.2.0",
+    "@antfu/eslint-config": "^8.3.0",
     "@iconify-json/ph": "^1.2.2",
-    "@soubiran/vite": "^0.7.0",
-    "@types/node": "^25.6.0",
+    "@soubiran/vite": "^0.10.3",
+    "@types/node": "^25.9.5",
     "@vue/tsconfig": "^0.9.1",
-    "eslint": "^10.2.1",
-    "tailwindcss": "^4.2.4",
-    "taze": "^19.11.0",
+    "eslint": "^10.10.0",
+    "tailwindcss": "^4.3.3",
+    "taze": "^19.17.2",
     "typescript": "~6.0.3",
     "unplugin-icons": "^23.0.1",
-    "vite": "^8.0.10",
-    "wrangler": "^4.85.0"
+    "vite": "^8.2.2",
+    "wrangler": "^4.129.0"
   }
 }
