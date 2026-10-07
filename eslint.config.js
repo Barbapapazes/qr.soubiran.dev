@@ -13,12 +13,4 @@ export default antfu({
       },
     }],
   },
-}, {
-  files: ['scripts/*.mjs'],
-  rules: {
-    // Use the JS rule: the TS-aware unused-imports rule misclassifies top-level
-    // await bindings as type-only references in these Node ESM scripts.
-    'unused-imports/no-unused-vars': 'off',
-    'no-unused-vars': 'error',
-  },
 })
