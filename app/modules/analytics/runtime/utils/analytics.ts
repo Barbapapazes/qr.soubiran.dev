@@ -1,4 +1,4 @@
-/** Never send the editor's shared code, title, or watermark URL parameters. */
+/** Never send the QR content in shared URL parameters. */
 export function sanitizeAnalyticsPayload(_type: string, payload: Record<string, unknown>) {
   function stripParameters(value: unknown) {
     return typeof value === 'string' ? value.split(/[?#]/, 1)[0] : ''
@@ -8,6 +8,6 @@ export function sanitizeAnalyticsPayload(_type: string, payload: Record<string, 
     ...payload,
     url: stripParameters(payload.url),
     referrer: stripParameters(payload.referrer),
-    title: 'Code ・ Estéban Soubiran',
+    title: 'QR ・ Estéban Soubiran',
   }
 }

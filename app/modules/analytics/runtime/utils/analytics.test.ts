@@ -4,28 +4,28 @@ import { sanitizeAnalyticsPayload } from './analytics'
 describe('sanitizeAnalyticsPayload', () => {
   it.each(['event', 'identify'])('removes sensitive URL state from %s payloads', (type) => {
     const payload = {
-      url: '/?code=secret-code&title=private-title&watermark=private-name#secret',
-      referrer: 'https://code.soubiran.dev/?code=other-secret#private',
+      url: '/?url=https%3A%2F%2Fprivate.example#secret',
+      referrer: 'https://qr.soubiran.dev/?url=other-secret#private',
       title: 'private-title',
-      name: 'editor_language_change',
-      data: { language: 'typescript' },
+      name: 'pageview',
+      data: {},
     }
 
     expect(sanitizeAnalyticsPayload(type, payload)).toEqual({
       url: '/',
-      referrer: 'https://code.soubiran.dev/',
-      title: 'Code ・ Estéban Soubiran',
-      name: 'editor_language_change',
-      data: { language: 'typescript' },
+      referrer: 'https://qr.soubiran.dev/',
+      title: 'QR ・ Estéban Soubiran',
+      name: 'pageview',
+      data: {},
     })
-    expect(payload.url).toContain('secret-code')
+    expect(payload.url).toContain('private.example')
   })
 
   it('preserves clean paths and handles missing referrers', () => {
     expect(sanitizeAnalyticsPayload('event', { url: '/' })).toEqual({
       url: '/',
       referrer: '',
-      title: 'Code ・ Estéban Soubiran',
+      title: 'QR ・ Estéban Soubiran',
     })
   })
 
