@@ -1,4 +1,5 @@
-import { params } from '@/app/state/params'
+import { ref, watch } from 'vue'
+import { params } from '../state/params'
 
 const url = ref('')
 let isInitialized = false

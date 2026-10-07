@@ -1,4 +1,6 @@
+import type { MaybeRefOrGetter } from 'vue'
 import { domToPng } from 'modern-screenshot'
+import { toValue } from 'vue'
 
 export function useScreenshot(element: MaybeRefOrGetter<any>) {
   function capture() {

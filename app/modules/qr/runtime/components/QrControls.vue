@@ -1,7 +1,4 @@
 <script lang="ts">
-import camera from '~icons/ph/camera'
-import link from '~icons/ph/link'
-
 const qrControls = tv({
   slots: {
     base: 'absolute inset-x-0 bottom-8 mx-auto flex w-full max-w-screen-sm flex-col gap-2',
@@ -36,14 +33,16 @@ const ui = computed(() => qrControls())
       <UFieldGroup>
         <UInput
           v-model="url"
-          :icon="link"
+          icon="i-ph-link"
+          aria-label="URL to encode"
           color="neutral"
           placeholder="URL"
           variant="subtle"
         />
 
         <UButton
-          :icon="camera"
+          icon="i-ph-camera"
+          :disabled="!url.trim()"
           color="neutral"
           label="Capture"
           variant="solid"

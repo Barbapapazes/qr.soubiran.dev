@@ -21,7 +21,7 @@ const props = defineProps<QrPreviewProps>()
 defineEmits<QrPreviewEmits>()
 defineSlots<QrPreviewSlots>()
 
-const el = templateRef('el')
+const el = useTemplateRef('el')
 defineExpose({
   el,
 })
@@ -30,7 +30,7 @@ const ui = computed(() => qrPreview())
 </script>
 
 <template>
-  <div ref="el" :class="ui.base({ class: [props.ui?.base, props.class] })">
+  <div ref="el" role="img" aria-label="QR code preview" :class="ui.base({ class: [props.ui?.base, props.class] })">
     <div v-html="props.svg" />
   </div>
 </template>
