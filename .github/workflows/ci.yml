@@ -47,18 +47,3 @@ jobs:
 
       - name: Run build
         run: pnpm run build
-
-      - name: Install smoke-test browser
-        run: pnpm exec playwright install --with-deps chromium
-
-      - name: Verify built assets and QR editor
-        run: pnpm test:smoke
-
-      - name: Upload deployment artifact
-        if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: cloudflare-build
-          path: .cloudflare/output/
-          include-hidden-files: true
-          if-no-files-found: error

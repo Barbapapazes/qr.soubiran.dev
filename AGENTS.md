@@ -1,5 +1,10 @@
-Keep components accessible and consider SEO and privacy when changing metadata or analytics.
+Always make components accessible and follow accessibility best practices. Consider tracking and analytics when implementing new features. Consider SEO for changes to the app metadata and user-facing content.
 
-This is a client-side Nuxt app using Nuxt UI and the experimental Vite server builder. Feature code lives in local modules under `app/modules/`, with public registrations in `index.ts` and implementation details and tests in `runtime/`. Cloudflare serves static SPA assets; no custom Worker is required.
+---
 
-Never track QR content or query-string payloads. Keep the paired Nuxt preview pins and deployment patches aligned with code.soubiran.dev. Run production builds in CI, not on the low-capacity development host.
+This project uses a client-side Nuxt app with Nuxt UI.
+
+To learn more about the libraries used, check the following links:
+
+- <https://nuxt.com/llms.txt>
+- <https://ui.nuxt.com/llms.txt>
