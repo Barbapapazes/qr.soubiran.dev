@@ -1,5 +1,7 @@
+import type { MaybeRefOrGetter } from 'vue'
 import { encode, renderSVG } from 'uqr'
-import { QR_BASE_OPTIONS, QR_OUTPUT_SIZE } from '@/app/constants'
+import { computed, toValue } from 'vue'
+import { QR_BASE_OPTIONS, QR_OUTPUT_SIZE } from '../constants'
 
 export function useQrCode(content: MaybeRefOrGetter<string | undefined>) {
   const contentValue = computed(() => toValue(content) ?? '')

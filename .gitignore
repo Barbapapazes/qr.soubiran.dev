@@ -1,7 +1,10 @@
 node_modules
 dist
-auto-imports.d.ts
-components.d.ts
+.nuxt
+.output
+.cloudflare
 .DS_Store
 .wrangler
 .env
+.env.*
+!.env.example

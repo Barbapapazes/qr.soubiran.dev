@@ -1,8 +1,5 @@
 <script lang="ts">
-import QrControls from '@/app/components/QrControls.vue'
-import QrPreview from '@/app/components/QrPreview.vue'
-
-const app = tv({
+const qrWorkspace = tv({
   slots: {
     base: 'flex h-screen w-screen flex-col items-center justify-center',
   },
@@ -10,7 +7,7 @@ const app = tv({
 
 export interface AppProps {
   class?: any
-  ui?: Partial<typeof app.slots>
+  ui?: Partial<typeof qrWorkspace.slots>
 }
 
 export interface AppEmits {}
@@ -27,7 +24,7 @@ const preview = ref<{ el?: HTMLElement }>()
 const { url } = useQrContent()
 const { svg } = useQrCode(url)
 const { capture: captureQrCode } = useScreenshot(() => preview.value?.el)
-const ui = computed(() => app())
+const ui = computed(() => qrWorkspace())
 </script>
 
 <template>
