@@ -3,6 +3,9 @@ blockExoticSubdeps: false
 trustPolicy: off
 shellEmulator: true
 
+overrides:
+  '@nuxtjs/color-mode': https://pkg.pr.new/@nuxtjs/color-mode@478
+
 # Temporary fix for the pinned Nuxt preview: finalize SPA assets in Vite's
 # resolved client outDir, which Cloudflare redirects to its build output.
 patchedDependencies:
