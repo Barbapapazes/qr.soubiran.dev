@@ -21,6 +21,13 @@ const runtime = new Miniflare({
     config: {
       name: config.name,
       compatibilityDate: config.compatibilityDate,
+      // Match the Vite plugin's preview shim: Miniflare requires a module even
+      // when the asset router never invokes a user Worker. Not deployed.
+      manifest: {
+        mainModule: 'assets-only.mjs',
+        modulesRoot: workerDirectory,
+        modules: { 'assets-only.mjs': { type: 'esm', contents: 'export default {};' } },
+      },
       assets: {
         directory: assetsDirectory,
         hasUserWorker: false,
