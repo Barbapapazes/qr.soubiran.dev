@@ -50,20 +50,42 @@ try {
   browser = await chromium.launch()
   const page = await browser.newPage()
   const errors = []
-  page.on('pageerror', error => errors.push(error.stack ?? error.message))
+  page.on('pageerror', error => errors.push(error.stack || error.message))
   page.on('response', (response) => {
     if (response.request().resourceType() === 'script' && response.headers()['content-type']?.includes('text/html'))
       console.error('HTML returned for script:', response.url())
   })
-  await page.route(/umami\.soubiran\.dev|fonts\.googleapis\.com|fonts\.gstatic\.com/, route => route.abort())
+  await page.route(/fonts\.googleapis\.com|fonts\.gstatic\.com/, route => route.abort())
+  // Stub the third party, but exercise the real Nuxt Scripts loader and hook.
+  await page.route('https://umami.soubiran.dev/script.js', route => route.fulfill({
+    contentType: 'application/javascript',
+    body: `
+      window.__qrPageviews = [];
+      window.umami = { track() {
+        const script = document.querySelector('script[data-website-id]');
+        const sanitize = window[script.dataset.beforeSend];
+        window.__qrPageviews.push(sanitize('event', {
+          url: location.pathname + location.search + location.hash,
+          referrer: document.referrer,
+          title: document.title,
+        }));
+      } };
+    `,
+  }))
   const url = new URL(origin)
   url.searchParams.set('url', 'https://soubiran.dev')
   await page.goto(url.toString())
   const input = page.getByRole('textbox', { name: 'URL to encode', exact: true })
   await page.getByRole('img', { name: 'QR code preview', exact: true }).locator('svg').waitFor()
   assert.equal(await input.inputValue(), 'https://soubiran.dev')
+  await page.waitForFunction(() => window.__qrPageviews?.length === 1)
+  const tracked = await page.evaluate(() => window.__qrPageviews)
+  assert.equal(tracked[0].url, '/')
+  assert.equal(tracked[0].title, 'QR ・ Estéban Soubiran')
+  assert.ok(!JSON.stringify(tracked).includes('https://soubiran.dev'))
   await input.fill('https://qr.soubiran.dev')
   await page.waitForFunction(() => new URL(location.href).searchParams.get('url') === 'https://qr.soubiran.dev')
+  assert.equal(await page.evaluate(() => window.__qrPageviews.length), 1, 'Query edits should not count as new pageviews')
   await page.reload()
   await page.getByRole('img', { name: 'QR code preview', exact: true }).locator('svg').waitFor()
   assert.equal(await input.inputValue(), 'https://qr.soubiran.dev')

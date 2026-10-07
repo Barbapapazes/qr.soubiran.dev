@@ -16,6 +16,9 @@ export default defineNuxtModule({
                 autoTrack: false,
                 beforeSend: '__qrAnalyticsBeforeSend',
                 scriptInput: { src: 'https://umami.soubiran.dev/script.js' },
+                // Bundling/proxying needs Nitro public assets/routes, which this
+                // assets-only Vite server build does not provide.
+                scriptOptions: { bundle: false, proxy: false },
                 trigger: 'onNuxtReady',
               },
         },
