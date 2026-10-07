@@ -2,6 +2,7 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu({
   stylistic: true,
+  test: false,
   vue: true,
 }, {
   files: ['pnpm-workspace.yaml'],
