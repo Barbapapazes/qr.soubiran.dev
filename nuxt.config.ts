@@ -8,7 +8,6 @@ export default defineNuxtConfig({
   server: { builder: 'vite' },
   modules: ['@nuxt/ui', '@vueuse/nuxt', '@nuxt/scripts'],
   css: ['~/styles/main.css'],
-  ui: { colorMode: false },
   icon: { provider: 'iconify', serverBundle: false, clientBundle: { scan: true } },
   imports: { imports: [{ from: 'tailwind-variants', name: 'tv' }] },
   app: {
