@@ -4,19 +4,30 @@ import { resolve } from 'node:path'
 import { Miniflare } from 'miniflare'
 import { chromium } from 'playwright'
 
-const assetsDirectory = resolve('.cloudflare/output/v0/workers/default/assets')
+const workerDirectory = resolve('.cloudflare/output/v0/workers/default')
+const config = JSON.parse(await readFile(resolve(workerDirectory, 'worker.config.json'), 'utf8'))
+assert.equal(config.name, 'qr-soubiran-dev')
+assert.equal(config.manifest, undefined, 'QR should remain an assets-only deployment')
+assert.deepEqual(config.domains, ['qr.soubiran.dev'])
+assert.equal(config.assets.notFoundHandling, 'single-page-application')
+const assetsDirectory = resolve(workerDirectory, 'assets')
 const html = await readFile(resolve(assetsDirectory, 'index.html'), 'utf8')
 assert.match(html, /QR ・ Estéban Soubiran/)
 assert.match(html, /Generate downloadable QR codes for any URL/)
 
 // Exercise the built SPA in Cloudflare's actual asset runtime, without deploying.
 const runtime = new Miniflare({
-  compatibilityDate: '2026-10-07',
-  assets: {
-    directory: assetsDirectory,
-    routerConfig: { has_user_worker: false },
-    assetConfig: { not_found_handling: 'single-page-application' },
-  },
+  workers: [{
+    config: {
+      name: config.name,
+      compatibilityDate: config.compatibilityDate,
+      assets: {
+        directory: assetsDirectory,
+        hasUserWorker: false,
+        notFoundHandling: config.assets.notFoundHandling,
+      },
+    },
+  }],
 })
 let browser
 try {
