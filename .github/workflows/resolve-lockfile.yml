@@ -2,7 +2,7 @@ name: Resolve lockfile
 on:
   push:
     branches: [migration/nuxt-vite-server]
-    paths: [.github/workflows/resolve-lockfile.yml]
+    paths: [.github/workflows/resolve-lockfile.yml, package.json]
 permissions:
   contents: read
 jobs:
