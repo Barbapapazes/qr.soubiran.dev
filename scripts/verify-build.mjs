@@ -50,7 +50,11 @@ try {
   browser = await chromium.launch()
   const page = await browser.newPage()
   const errors = []
-  page.on('pageerror', error => errors.push(error.message))
+  page.on('pageerror', error => errors.push(error.stack ?? error.message))
+  page.on('response', (response) => {
+    if (response.request().resourceType() === 'script' && response.headers()['content-type']?.includes('text/html'))
+      console.error('HTML returned for script:', response.url())
+  })
   await page.route(/umami\.soubiran\.dev|fonts\.googleapis\.com|fonts\.gstatic\.com/, route => route.abort())
   const url = new URL(origin)
   url.searchParams.set('url', 'https://soubiran.dev')
