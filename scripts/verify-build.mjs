@@ -24,7 +24,7 @@ try {
   const response = await fetch(new URL('/?url=https%3A%2F%2Fsoubiran.dev', origin))
   assert.equal(response.status, 200)
   const document = await response.text()
-  const asset = document.match(/(?:src|href)="([^"?]*_nuxt[/][^"?]+[.]js)/)?.[1]
+  const asset = document.match(/(?:src|href)="([^"?]*_nuxt\/[^"?]+\.js)/)?.[1]
   assert.ok(asset, 'SPA should reference a built JavaScript asset')
   assert.equal((await fetch(new URL(asset, origin))).status, 200)
   assert.equal((await fetch(new URL('/shared-link', origin))).status, 200)
@@ -33,7 +33,7 @@ try {
   const page = await browser.newPage()
   const errors = []
   page.on('pageerror', error => errors.push(error.message))
-  await page.route(/umami[.]soubiran[.]dev|fonts[.]googleapis[.]com|fonts[.]gstatic[.]com/, route => route.abort())
+  await page.route(/umami\.soubiran\.dev|fonts\.googleapis\.com|fonts\.gstatic\.com/, route => route.abort())
   const url = new URL(origin)
   url.searchParams.set('url', 'https://soubiran.dev')
   await page.goto(url.toString())
@@ -55,7 +55,6 @@ try {
   await page.waitForFunction(() => !new URL(location.href).searchParams.has('url'))
   assert.equal(await page.getByRole('button', { name: 'Capture', exact: true }).isDisabled(), true)
   assert.deepEqual(errors, [], 'QR editor should boot and capture without browser exceptions')
-  // eslint-disable-next-line no-console -- CI validation result.
   console.log('Verified built SPA assets, shared URL state, QR rendering, and PNG capture.')
 }
 finally {
