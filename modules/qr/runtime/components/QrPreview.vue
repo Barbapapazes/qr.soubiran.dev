@@ -30,7 +30,12 @@ const ui = computed(() => qrPreview())
 </script>
 
 <template>
-  <div ref="el" role="img" aria-label="QR code preview" :class="ui.base({ class: [props.ui?.base, props.class] })">
+  <div
+    ref="el"
+    role="img"
+    aria-label="QR code preview"
+    :class="ui.base({ class: [props.ui?.base, props.class] })"
+  >
     <div v-html="props.svg" />
   </div>
 </template>

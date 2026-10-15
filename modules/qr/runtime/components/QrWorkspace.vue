@@ -31,9 +31,6 @@ const ui = computed(() => qrWorkspace())
   <main :class="ui.base({ class: [props.ui?.base, props.class] })">
     <QrPreview ref="preview" :svg="svg" />
 
-    <QrControls
-      v-model="url"
-      @capture="captureQrCode"
-    />
+    <QrControls v-model="url" @capture="captureQrCode" />
   </main>
 </template>

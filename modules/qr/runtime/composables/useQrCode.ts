@@ -15,8 +15,7 @@ export function useQrCode(content: MaybeRefOrGetter<string | undefined>) {
 
     try {
       return encode(value, QR_BASE_OPTIONS)
-    }
-    catch {
+    } catch {
       return null
     }
   })
@@ -24,8 +23,7 @@ export function useQrCode(content: MaybeRefOrGetter<string | undefined>) {
   const svg = computed(() => {
     const value = contentValue.value
 
-    if (!value || !generation.value)
-      return ''
+    if (!value || !generation.value) return ''
 
     try {
       const qrSize = generation.value.size
@@ -34,8 +32,7 @@ export function useQrCode(content: MaybeRefOrGetter<string | undefined>) {
         ...QR_BASE_OPTIONS,
         pixelSize: QR_OUTPUT_SIZE / qrSize,
       })
-    }
-    catch {
+    } catch {
       return ''
     }
   })

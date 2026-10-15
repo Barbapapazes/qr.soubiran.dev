@@ -4,7 +4,8 @@ trustPolicy: off
 shellEmulator: true
 
 overrides:
-  '@nuxtjs/color-mode': https://pkg.pr.new/@nuxtjs/color-mode@478
+  '@nuxtjs/color-mode': https://pkg.pr.new/@nuxtjs/color-mode@28f2643a190ff1768db585b080f8a0ff7fe026aa
+  vite@*: 'catalog:'
 
 # Temporary fix for the pinned Nuxt preview: finalize SPA assets in Vite's
 # resolved client outDir, which Cloudflare redirects to its build output.
@@ -20,3 +21,22 @@ allowBuilds:
   sharp: false
   vue-demi: false
   workerd: false
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@1.2.0
+  vite-plus: 1.2.0
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: '*'
+minimumReleaseAgeExclude:
+  - '@voidzero-dev/vite-plus-core@1.2.0'
+  - '@voidzero-dev/vite-plus-darwin-arm64@1.2.0'
+  - '@voidzero-dev/vite-plus-darwin-x64@1.2.0'
+  - '@voidzero-dev/vite-plus-linux-arm64-gnu@1.2.0'
+  - '@voidzero-dev/vite-plus-linux-arm64-musl@1.2.0'
+  - '@voidzero-dev/vite-plus-linux-x64-gnu@1.2.0'
+  - '@voidzero-dev/vite-plus-linux-x64-musl@1.2.0'
+  - '@voidzero-dev/vite-plus-win32-arm64-msvc@1.2.0'
+  - '@voidzero-dev/vite-plus-win32-x64-msvc@1.2.0'
+  - vite-plus@1.2.0
