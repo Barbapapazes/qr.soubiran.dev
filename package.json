@@ -35,7 +35,7 @@
     "miniflare": "5.20260930.0-alpha",
     "tailwindcss": "^4.3.3",
     "taze": "^21.3.0",
-    "typescript": "~6.0.3",
+    "typescript": "~7.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:",
     "vue-tsc": "^3.3.12"
